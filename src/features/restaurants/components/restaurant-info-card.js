@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Text, StyleSheet, Image, View } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
@@ -6,7 +6,7 @@ import { Rating } from "react-native-ratings";
 
 import open from "../../../../assets/open";
 
-export const RestaurantInfoCard = ({ restaurant = {} }) => {
+const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -25,7 +25,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <View style={styles.space}>
         <Text>{name}</Text>
         <View style={styles.section}>
-          <Rating startingValue={rating} readonly imageSize={20} />
+          <Rating
+            startingValue={rating}
+            readonly
+            imageSize={20}
+            style={styles.rating}
+          />
           <View style={styles.sectionEnd}>
             {isClosedTemporarily && (
               <Text variant="label" style={{ color: "red" }}>
@@ -44,6 +49,8 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   );
 };
 
+export default memo(RestaurantInfoCard);
+
 const styles = StyleSheet.create({
   space: {
     paddingLeft: 16,
@@ -53,12 +60,15 @@ const styles = StyleSheet.create({
   section: {
     paddingTop: 10,
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     paddingBottom: 10,
   },
+  rating: {
+    marginRight: 10,
+  },
   sectionEnd: {
-    flex: 1,
+    display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end",
   },
 });

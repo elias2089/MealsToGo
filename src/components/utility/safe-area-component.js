@@ -8,6 +8,6 @@ export const SafeArea = ({ children }) => {
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    // marginTop: StatusBar.currentHeight,
+    marginTop: StatusBar.currentHeight,
   },
 });
