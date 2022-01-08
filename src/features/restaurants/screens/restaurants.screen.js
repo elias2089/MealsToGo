@@ -4,7 +4,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import RestaurantInfoCard from "../components/restaurant-info-card";
 import { SafeArea } from "../../../components/utility/safe-area-component";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import { Search } from "../components/search-components";
+import { Search } from "../components/search";
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
   return (
