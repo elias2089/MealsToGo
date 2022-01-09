@@ -6,6 +6,7 @@ import { CompactRestaurantInfo } from "../../../components/restaurant/compact-re
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
+// Map Component
 export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
@@ -53,7 +54,7 @@ export const MapScreen = ({ navigation }) => {
                   })
                 }
               >
-                <CompactRestaurantInfo restaurant={restaurant} />
+                <CompactRestaurantInfo restaurant={restaurant} isMapView />
               </MapView.Callout>
             </MapView.Marker>
           );

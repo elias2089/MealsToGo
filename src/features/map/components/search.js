@@ -4,6 +4,7 @@ import { StatusBar, StyleSheet, View, Platform } from "react-native";
 
 import { LocationContext } from "../../../services/location/location.context";
 
+// Search Component on Map
 export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
@@ -26,13 +27,13 @@ export const Search = () => {
     </View>
   );
 };
-
+const isAndroid = Platform.OS === "android";
 const styles = StyleSheet.create({
   container: {
     padding: 16,
     position: "absolute",
     zIndex: 999,
-    top: Platform.OS === "ios" ? 40 : StatusBar.currentHeight,
+    top: isAndroid ? 40 : StatusBar.currentHeight,
     width: "100%",
   },
 });

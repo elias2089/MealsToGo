@@ -1,3 +1,4 @@
+// mock with places locations
 export const locations = {
   antwerp: {
     results: [

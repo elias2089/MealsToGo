@@ -10,11 +10,13 @@ export const LocationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const onSearch = (searchKeyword) => {
+  // allow to change the keyword value
+  const onSearch = (value) => {
     setIsLoading(true);
-    setKeyword(searchKeyword);
+    setKeyword(value);
   };
 
+  // when keyword change find location {lat and lng} from place
   useEffect(() => {
     if (!keyword.length) {
       // don't do anything

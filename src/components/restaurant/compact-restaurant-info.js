@@ -3,7 +3,8 @@ import { Image, View, Text, StyleSheet, Platform } from "react-native";
 // renders web content in a native view.
 import WebView from "react-native-webview";
 
-export const CompactRestaurantInfo = ({ restaurant }) => {
+// Restaurant Info { photo and name }
+export const CompactRestaurantInfo = ({ restaurant, isMapView = false }) => {
   const { name, photos } = restaurant;
   const CompactImage = (
     <Image style={styles.image} source={{ uri: photos[0] }} />
@@ -11,8 +12,12 @@ export const CompactRestaurantInfo = ({ restaurant }) => {
   const CompactWebView = (
     <WebView style={styles.image} source={{ uri: photos[0] }} />
   );
-
-  const Photo = Platform.OS === "android" ? CompactWebView : CompactImage;
+  const isAndroid = Platform.OS === "android";
+  const Photo = isAndroid
+    ? isMapView
+      ? CompactWebView
+      : CompactImage
+    : CompactImage;
 
   return (
     <View style={styles.item}>

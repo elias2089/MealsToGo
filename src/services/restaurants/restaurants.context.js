@@ -15,11 +15,12 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { location } = useContext(LocationContext);
 
-  const retrieveRestaurants = (value) => {
+  // Find restaurants from coordinates
+  const retrieveRestaurants = (coordinates) => {
     setIsLoading(true);
     setRestaurants([]);
     setTimeout(() => {
-      restaurantsRequest(value)
+      restaurantsRequest(coordinates)
         .then(restaurantsTransform)
         .then((results) => {
           setIsLoading(false);
@@ -32,10 +33,11 @@ export const RestaurantsContextProvider = ({ children }) => {
     }, 2000);
   };
 
+  // get coordinates from location and call find restaurants
   useEffect(() => {
     if (location) {
-      const locationString = `${location.lat},${location.lng}`;
-      retrieveRestaurants(locationString);
+      const coordinates = `${location.lat},${location.lng}`;
+      retrieveRestaurants(coordinates);
     }
   }, [location]);
 

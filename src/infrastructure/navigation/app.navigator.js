@@ -10,18 +10,14 @@ import { SafeArea } from "../../components/utility/safe-area-component";
 
 const Tab = createBottomTabNavigator();
 
+// icons
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
   Settings: "md-settings",
 };
 
-const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-);
-
+// options from screen
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   return {
@@ -33,6 +29,14 @@ const createScreenOptions = ({ route }) => {
   };
 };
 
+// Settings Screen
+const Settings = () => (
+  <SafeArea>
+    <Text>Settings</Text>
+  </SafeArea>
+);
+
+// All Screens
 export const AppNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator screenOptions={createScreenOptions}>

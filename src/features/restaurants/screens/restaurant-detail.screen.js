@@ -4,6 +4,7 @@ import { List } from "react-native-paper";
 
 import RestaurantInfoCard from "../../../features/restaurants/components/restaurant-info-card";
 
+// Restaurant Details Component have all info of restaurant
 export const RestaurantDetailScreen = ({ route }) => {
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);

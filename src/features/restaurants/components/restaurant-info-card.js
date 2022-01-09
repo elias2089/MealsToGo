@@ -6,6 +6,9 @@ import { Rating } from "react-native-ratings";
 
 import open from "../../../../assets/open";
 
+import { Favourite } from "../../../components/favourites/favourite";
+
+// Restaurant Info Card Component use in restaurant list
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
@@ -21,7 +24,10 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <Card elevation={5}>
-      <Card.Cover key={name} source={{ uri: photos[0] }} />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <Card.Cover key={name} source={{ uri: photos[0] }} />
+      </View>
       <View style={styles.space}>
         <Text>{name}</Text>
         <View style={styles.section}>

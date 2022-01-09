@@ -1,6 +1,7 @@
 import { mocks, mockImages } from "./mock";
 import camelize from "camelize";
 
+// service to find restaurants from location
 export const restaurantsRequest = (location) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
@@ -11,6 +12,7 @@ export const restaurantsRequest = (location) => {
   });
 };
 
+// service to transform the results
 export const restaurantsTransform = ({ results = [] }) => {
   const mappedResults = results.map((restaurant) => {
     restaurant.photos = restaurant.photos.map(() => {
