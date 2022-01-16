@@ -10,6 +10,7 @@ import { RestaurantDetailScreen } from "../../features/restaurants/screens/resta
 const RestaurantStack = createStackNavigator();
 
 // Component use as Navigator have other screen in this components
+// ModalPresentationIOS open screens as IOS from down to up
 export const RestaurantsNavigator = () => {
   return (
     <RestaurantStack.Navigator
