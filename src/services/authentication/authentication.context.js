@@ -1,11 +1,18 @@
 import React, { useState, createContext } from "react";
-import { loginRequest, registerRequest } from "./authentication.service";
+import {
+  loginRequest,
+  registerRequest,
+  signOut,
+} from "./authentication.service";
+
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
 
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
@@ -14,7 +21,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     loginRequest(email, password)
       .then((data) => {
         setUser(data);
-        setAuthenticated(true);
         setIsLoading(false);
         setError(null);
       })
@@ -24,15 +30,25 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  auth.onAuthStateChanged((user) => {
+    console.log(user);
+    if (user) {
+      setUser(user);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
+
   const onRegister = (email, password, repeatedPassword) => {
     if (password !== repeatedPassword) {
       setError("Error: Passwords do not match");
       return;
     }
+    setIsLoading(true);
     registerRequest(email, password)
       .then((data) => {
         setUser(data);
-        setAuthenticated(true);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -41,15 +57,24 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  const onLogout = () => {
+    setUser(null);
+    signOut().then(() => {
+      setUser(null);
+      setError(null);
+    });
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
+        isAuthenticated: !!user,
         user,
-        isAuthenticated,
         isLoading,
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

@@ -10,3 +10,5 @@ export const loginRequest = (email, password) =>
 
 export const registerRequest = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
+
+export const signOut = () => auth.signOut();

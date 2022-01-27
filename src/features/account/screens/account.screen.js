@@ -7,13 +7,23 @@ import {
   AccountLigth,
   Title,
 } from "../components/account-background";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
+import LottieView from "lottie-react-native";
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover>
+        <View style={styles.animationWrapper}>
+          <LottieView
+            key="animation"
+            autoPlay
+            loop
+            resizeMode="cover"
+            source={require("../../../../assets/watermelon.json")}
+          />
+        </View>
         <AccountContainer>
           <Title>Meals To Go</Title>
           <AccountLigth>
@@ -46,5 +56,12 @@ const styles = StyleSheet.create({
   },
   buttonMargin: {
     marginBottom: 16,
+  },
+  animationWrapper: {
+    width: "100%",
+    height: "40%",
+    position: "absolute",
+    top: 30,
+    padding: 8,
   },
 });

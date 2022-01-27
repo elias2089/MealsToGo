@@ -10,5 +10,6 @@ const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
+    backgroundColor: "white",
   },
 });
