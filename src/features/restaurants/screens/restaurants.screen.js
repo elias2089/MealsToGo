@@ -7,6 +7,7 @@ import { SafeArea } from "../../../components/utility/safe-area-component";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Search } from "../components/search";
 import { FavouritesBar } from "../../../components/favourites/favourites-bar";
+import { FadeInView } from "../../../components/animations/fade.animation";
 // Restaurant List Component
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
@@ -48,7 +49,9 @@ export const RestaurantsScreen = ({ navigation }) => {
                 })
               }
             >
-              <RestaurantInfoCard restaurant={item} />
+              <FadeInView>
+                <RestaurantInfoCard restaurant={item} />
+              </FadeInView>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.name}

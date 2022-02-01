@@ -1,0 +1,2 @@
+-- typografia
+-- integrar styled-components
